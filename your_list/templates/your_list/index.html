@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        {% load static %}
+      <title>Shopping List</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="icon" type="image/x-icon" href="{% static '/images/milk_bottle.png' %}">
+    </head>
+
+    <body class="bg-info">
+        <main class="col-8 offset-2 bg-light p-3">
+            <h1 class="display-4 text-center text-info">Your Shopping List</h1>
+            <div>
+                <blockquote class="blockquote text-center">Don't forget the milk...</blockquote>
+            </div>
+            <div id="table_container">
+                <table id="table" class="table table-hover">
+                    {% if list %}
+                        <tbody id="shopping_list">
+                        {% for key, value in list.items %}
+                        <tr>
+                            <td class="item_info list_item">{{ value }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <p>Your shopping is done.</p>
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </body>
+</html>
