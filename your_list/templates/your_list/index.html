@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<!-- Homepage displaying list of items and option to add -->
 <html>
     <head>
         {% load static %}
@@ -6,7 +7,6 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
       <link rel="icon" type="image/x-icon" href="{% static '/images/milk_bottle.png' %}">
     </head>
-
     <body class="bg-info">
         <main class="col-8 offset-2 bg-light p-3">
             <h1 class="display-4 text-center text-info">Your Shopping List</h1>
@@ -15,28 +15,34 @@
             </div>
             <div id="table_container">
                 <table id="table" class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">Items</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    {% if list %}
-                        <tbody id="shopping_list">
-                        {% for key, value in list.items %}
-                        <tr>
-                            <td class="item_info list_item">{{ value.item }}</td>
-                        </tr>
-                        {% endfor %}
-                        <tr>
-                            <td></td>
-                            <td class="item_info list_item">Total: £{{ total }}</td>
-                        </tr>
-                    {% else %}
-                        <p>Your shopping is done.</p>
-                    {% endif %}
-                    </tbody>
+                {% if list %}
+                <thead>
+                    <tr>
+                        <th scope="col">Items</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="shopping_list">
+                    {% for key, value in list.items %}
+                    <tr>
+                        <td class="item_info list_item">{{ value }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td class="item_info list_item">Total: £{{ total }}</td>
+                    </tr>
+                {% else %}
+                    <p>Your shopping is done.</p>
+                {% endif %}
+                </tbody>
                 </table>
+            </div>
+            <div class="col-6 offset-3 center-block bg-info p-3">
+                <h3 class="text-white text-center">More to buy?</h3>
+                <form id="new-item-form" method="get" action="/your_list/addItem">
+                    <input type="submit" value="Add an item" >
+                </form>
             </div>
         </main>
     </body>

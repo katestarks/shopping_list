@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<!-- Adds items to the List_Items db -->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add an item!</title>
+  </head>
+  <body>
+
+    {% block content %}
+    <h2>Add an item!</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Submit">
+    </form>
+
+    {% endblock %}
+  </body>
+</html>
